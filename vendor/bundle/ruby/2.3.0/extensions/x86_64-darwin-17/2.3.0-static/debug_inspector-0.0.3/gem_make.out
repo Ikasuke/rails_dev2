@@ -1,0 +1,15 @@
+current directory: /Users/ika_3_ika/dev/rails_dev2/vendor/bundle/ruby/2.3.0/gems/debug_inspector-0.0.3/ext/debug_inspector
+/Users/ika_3_ika/.rbenv/versions/2.3.3/bin/ruby -r ./siteconf20180715-18719-1wbuuuc.rb extconf.rb
+creating Makefile
+
+current directory: /Users/ika_3_ika/dev/rails_dev2/vendor/bundle/ruby/2.3.0/gems/debug_inspector-0.0.3/ext/debug_inspector
+make "DESTDIR=" clean
+
+current directory: /Users/ika_3_ika/dev/rails_dev2/vendor/bundle/ruby/2.3.0/gems/debug_inspector-0.0.3/ext/debug_inspector
+make "DESTDIR="
+compiling debug_inspector.c
+linking shared-object debug_inspector.bundle
+
+current directory: /Users/ika_3_ika/dev/rails_dev2/vendor/bundle/ruby/2.3.0/gems/debug_inspector-0.0.3/ext/debug_inspector
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 debug_inspector.bundle ./.gem.20180715-18719-bum990
