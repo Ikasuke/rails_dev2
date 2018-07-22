@@ -17,7 +17,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= @test %></td>
+        <td><%= user.name %></td>
         <td><%= user.mail_address %></td>
         <td><%= user.pass_word %></td>
         <td><%= user.administrator %></td>

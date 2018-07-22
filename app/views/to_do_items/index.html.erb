@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>To Do Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Category</th>
+      <th>Title</th>
+      <th>Start date</th>
+      <th>Start time</th>
+      <th>End date</th>
+      <th>End time</th>
+      <th>Place</th>
+      <th>Memo</th>
+      <th>Attachment</th>
+      <th>Rank</th>
+      <th>Remind</th>
+      <th>Remind time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @to_do_items.each do |to_do_item| %>
+      <tr>
+        <td><%= to_do_item.user_id %></td>
+        <td><%= to_do_item.category_id %></td>
+        <td><%= to_do_item.title %></td>
+        <td><%= to_do_item.start_date %></td>
+        <td><%= to_do_item.start_time %></td>
+        <td><%= to_do_item.end_date %></td>
+        <td><%= to_do_item.end_time %></td>
+        <td><%= to_do_item.place %></td>
+        <td><%= to_do_item.memo %></td>
+        <td><%= to_do_item.attachment %></td>
+        <td><%= to_do_item.rank %></td>
+        <td><%= to_do_item.remind %></td>
+        <td><%= to_do_item.remind_time %></td>
+        <td><%= link_to 'Show', to_do_item %></td>
+        <td><%= link_to 'Edit', edit_to_do_item_path(to_do_item) %></td>
+        <td><%= link_to 'Destroy', to_do_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New To Do Item', new_to_do_item_path %>
