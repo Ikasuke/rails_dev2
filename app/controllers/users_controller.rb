@@ -1,6 +1,26 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  def test
+    #render plain: "Hello, Rails!"
+   user = User.find(1)
+  to_do_items = user.to_do_items
+    #@categories = user.categories
+    catedoes = Array.new()
+  to_do_items.each do |to_do_item|
+    catedo = [user.name, to_do_item.category.category_name , to_do_item.title]
+     catedoes.push(catedo)
+  end
+     @cate_does = catedoes
+    #render plain:@to_does
+   #render plain:to_do_items[1].title
+
+  #to_do_item = ToDoItem.find(4)
+  #@user = to_do_item.user
+  #@category = to_do_item.category
+   #render plain:@user
+  end
+
   # GET /users
   # GET /users.json
   def index
