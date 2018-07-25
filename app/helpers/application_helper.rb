@@ -1,5 +1,6 @@
 module ApplicationHelper
 
+APP_NAME = 'TO Do App'
 
  def flash_message(message, klass)
    content_tag(:div, class: "alert alert-#{klass}") do
