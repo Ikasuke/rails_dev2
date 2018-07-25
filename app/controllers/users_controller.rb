@@ -21,6 +21,22 @@ class UsersController < ApplicationController
    #render plain:@user
   end
 
+
+def all
+  catedoes = Array.new()
+  users = User.all
+
+  users.each do |user|
+    to_do_items = user.to_do_items
+
+    to_do_items.each do |to_do_item|
+      catedo = [user.name, to_do_item.category.category_name , to_do_item.title]
+      catedoes.push(catedo)
+    end
+  end
+  @cate_does = catedoes
+end
+
   # GET /users
   # GET /users.json
   def index
