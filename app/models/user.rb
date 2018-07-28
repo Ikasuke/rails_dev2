@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :timeoutable
 
+validates :name, presence: true, length: {maximum: 50}
+
 has_many :to_do_items
 has_many :categories
 end

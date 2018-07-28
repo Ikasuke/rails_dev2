@@ -21,9 +21,9 @@
 #end
 
 # テスト用に作る　2018.07.22
-User.create(name:"ikada", email:"ika@yahoo", encrypted_password:"ikaika", administrator:true, state:true)
-User.create(name:"nakata", email:"naka@yahoo", encrypted_password:"nakanaka", administrator:false, state:true)
-User.create(name:"ota", email:"ota@yahoo", encrypted_password:"otaota", administrator:false, state:true)
+#User.create(name:"ikada", email:"ika@yahoo", encrypted_password:"ikaika", administrator:true, state:true)
+#User.create(name:"nakata", email:"naka@yahoo", encrypted_password:"nakanaka", administrator:false, state:true)
+#User.create(name:"ota", email:"ota@yahoo", encrypted_password:"otaota", administrator:false, state:true)
 
   # ikadaのtodo
   ToDoItem.create(user_id:1, category_id:1, title:"ika_do_1", start_date:'2018-01-01', start_time:'00:00', end_date:'2018-01-02', end_time:'00:00',
