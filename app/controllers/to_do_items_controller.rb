@@ -25,7 +25,9 @@ class ToDoItemsController < ApplicationController
   # POST /to_do_items.json
   def create
     @to_do_item = ToDoItem.new(to_do_item_params)
-
+     @to_do_item.category_id = "1"
+   @to_do_item.user_id = current_user.id
+     
     respond_to do |format|
       if @to_do_item.save
         format.html { redirect_to @to_do_item, notice: 'To do item was successfully created.' }

@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   resources :categories
   get 'home/index', to: 'home#index'
    root 'home#index'
-  #resources :users
+  resources :users
+  get 'user_home', to: 'users#home'
   get 'users', to: 'users#index'
   get '/test', to: 'users#test'
   get '/all' , to: 'users#all'

@@ -38,6 +38,25 @@ def all
   @cate_does = catedoes
 end
 
+ def home
+   user = current_user
+  @user = user
+    to_do_items = user.to_do_items
+    catedoes = Array.new()
+  to_do_items.each do |to_do_item|
+    catedo = [user.name, to_do_item.category.category_name , to_do_item.title]
+     catedoes.push(catedo)
+  end
+     @cate_does = catedoes
+
+     to_do_item = ToDoItem.new
+     to_do_item.user_id = user.id
+  
+     @to_do_item = to_do_item
+
+
+ end
+
   # GET /users
   # GET /users.json
   def index
@@ -62,6 +81,7 @@ end
   # POST /users
   # POST /users.json
   def create
+
     @user = User.new(user_params)
 
     respond_to do |format|
