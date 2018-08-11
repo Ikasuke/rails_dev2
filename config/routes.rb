@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   get 'users', to: 'users#index'
   get '/test', to: 'users#test'
   get '/all' , to: 'users#all'
+
+ get '/user/category', to: 'users#category'
+get 'user/admin', to: 'users#admin'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 # resources :users
 

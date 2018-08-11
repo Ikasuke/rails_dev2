@@ -1,0 +1,20 @@
+<p>admin ページ</p>
+
+
+ <% if @user.administrator == true %>
+  <p> 管理者ページです。<%= @user.name %>さんは管理者です</p>
+
+     <%  @cate_does.each do |cate_do| %>
+       <tr>
+       <td><%= cate_do[0] %></td>
+       <td><%= cate_do[1] %></td>
+       <td><%= cate_do[2] %></td>
+       <br>
+       </tr>
+     <% end %>
+
+
+    <% else %>
+
+       <p> 管理者ページです。<%= @user.name %>さんは管理者ではありません</p>
+    <% end %>
