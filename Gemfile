@@ -42,7 +42,9 @@ gem 'pry'
 
 gem 'devise'
 
-gem 'simple_calendar', '~> 2.0'
+#gem 'simple_calendar', '~> 2.0'
+
+gem 'activeadmin' 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
