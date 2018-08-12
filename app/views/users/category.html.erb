@@ -1,0 +1,16 @@
+<p> ここは、<%=@user.name%>さんのページです。
+
+</p>
+
+<%  @categories.each do |category| %>
+  <tr>
+  <td><%= category.category_name %></td>
+  <br>
+  </tr>
+<% end %>
+
+
+
+
+<%= link_to 'Edit', user_home_path %> |
+<%= link_to 'Back',  user_home_path %>

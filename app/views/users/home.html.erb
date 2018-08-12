@@ -1,0 +1,37 @@
+<p> ここは、<%=@user.name%>さんのページです。
+</p>
+
+<h3>all To do </h3>
+<%  @cate_does.each do |cate_do| %>
+  <tr>
+  <td><%= cate_do[0] %></td>
+  <td><%= cate_do[1] %></td>
+  <td><%= cate_do[2] %></td>
+  <br>
+  </tr>
+<% end %>
+
+<%= form_with model: ToDoItem.new do |f| %>
+ <%= f.label :contents, "To_do追加" %>
+ <%= f.text_field :title %>
+<%= f.select :category_id, @category_selects %>
+ <%= f.submit %>
+<% end %>
+
+
+<h5>Categoryを追加する</h5>
+<%= form_with model: Category.new do |f| %>
+ <%= f.label :contents,  "category" %>
+ <%= f.text_field :category_name %>
+ <%= f.submit %>
+<% end %>
+
+
+
+
+<p> <%= link_to 'TO do', to_do_items_path %> </p>
+
+<ol>
+<li><%= link_to 'ユーザー情報',  user_path(@user.id) %></li>
+<li><%= link_to 'カテゴリー情報', user_category_path %></li>
+</ol>
