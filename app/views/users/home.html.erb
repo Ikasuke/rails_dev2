@@ -4,16 +4,18 @@
 <h3>all To do</h3>
 <%  @cate_does.each do |cate_do| %>
   <tr>
-  <td><%= cate_do[1] %></td>
+  <td><%= link_to cate_do[2],edit_to_do_item_path(cate_do[3]) %></td>
   <br>
   </tr>
 <% end %>
 
 <%= form_with model: ToDoItem.new do |f| %>
  <%= f.label :contents, "To_do追加" %>
- <%= f.text_field :title %>
-<%= f.select :category_id, @category_selects %>
- <%= f.submit %>
+ <%= f.text_field :title, placeholder: 'to do入力' %>
+  <%= f.submit %>
+ <br>
+<%= f.select :category_id, @category_selects,{:prompt => "category"}, {:class => "category_tab"} %>
+
 <% end %>
 
 
@@ -37,6 +39,6 @@
 <li><%= link_to 'ユーザー情報',  user_path(@user.id) %></li>
 <%
 =end
-%> 
+%>
 <li><%= link_to 'カテゴリー情報', user_category_path %></li>
 </ol>

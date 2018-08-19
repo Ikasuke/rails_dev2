@@ -46,7 +46,7 @@ end  #all end
     catedoes = Array.new()
 
     to_do_items.each do |to_do_item|
-        catedo = [user.name, to_do_item.category.category_name , to_do_item.title]
+        catedo = [user.name, to_do_item.category.category_name , to_do_item.title, to_do_item.id]
         catedoes.push(catedo)
     end
     @cate_does = catedoes
@@ -73,22 +73,22 @@ def category
 end
 
 #administrator
-def admin
-   user = current_user
-   @user = user
-   catedoes = Array.new()
-   if user.administrator == true  then
-       users = User.all
-           users.each do |user|
-              to_do_items = user.to_do_items
-              to_do_items.each do |to_do_item|
-                   catedo = [user.name, to_do_item.category.category_name , to_do_item.title]
-                   catedoes.push(catedo)
-              end
-           end
-   end  #if end
-    @cate_does = catedoes
-end  #admin end
+#def admin
+#   user = current_user
+#   @user = user
+#   catedoes = Array.new()
+#   if user.administrator == true  then
+#       users = User.all
+#           users.each do |user|
+#              to_do_items = user.to_do_items
+#              to_do_items.each do |to_do_item|
+#                   catedo = [user.name, to_do_item.category.category_name , to_do_item.title]
+#                   catedoes.push(catedo)
+#              end
+#           end
+#   end  #if end
+#    @cate_does = catedoes
+#end  #admin end
 
 
 

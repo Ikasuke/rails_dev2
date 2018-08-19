@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    redirect_to user_home_url
   end
 
   # GET /categories/new

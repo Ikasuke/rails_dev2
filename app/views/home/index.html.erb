@@ -3,4 +3,9 @@
 
 <p> これはTo do app です </p>
 
-    <%= link_to 'ユーザーページ',  user_home_path %>
+<ul>
+  <li>  <%= link_to 'ユーザーページ',  user_home_path %> </li>
+       <%if @user.role == "admin" %>
+    <li>    <%= link_to 'アドミンページ',  admin_users_path %> </li>
+</ul>
+   <% end %>

@@ -12,4 +12,7 @@ ActiveAdmin.register User do
 #   permitted
 # end
 
+
+permit_params :role, :user
+
 end

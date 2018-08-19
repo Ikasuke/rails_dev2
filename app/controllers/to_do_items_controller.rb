@@ -10,6 +10,7 @@ class ToDoItemsController < ApplicationController
   # GET /to_do_items/1
   # GET /to_do_items/1.json
   def show
+    #redirect_to user_home_url
   end
 
   # GET /to_do_items/new
@@ -33,7 +34,7 @@ class ToDoItemsController < ApplicationController
         format.html { redirect_to @to_do_item, notice: 'To do item was successfully created.' }
         format.json { render :show, status: :created, location: @to_do_item }
       else
-        format.html { render :new }
+        format.html { render 'users/home' }
         format.json { render json: @to_do_item.errors, status: :unprocessable_entity }
       end
     end
