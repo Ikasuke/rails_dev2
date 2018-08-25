@@ -28,5 +28,17 @@ module RailsDev2
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.active_job.queue_adapter = :sidekiq
+
+
+#Redis_session
+config.cache_store = :redis_store, {
+  host: ENV['REDIS_HOST'] || 'localhost',  #Redisのサーバー名
+  port: ENV['REDIS_PORT'] || 6379,        # Redisのサーバーポート
+  db: 0,                                  #データベースの番号(0-15)の任意
+},{
+  expire_after: 90.minutes                 #保存期間
+}
+
   end
 end

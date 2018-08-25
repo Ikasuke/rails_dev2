@@ -297,5 +297,6 @@ config.register_stylesheet 'admin/active_admin.css'
 config.clear_javascripts!
 config.register_javascript 'admin/active_admin.js'
 
+config.comments = false
 
 end

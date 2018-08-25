@@ -35,6 +35,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :timeoutable
 
+def send_devise_notification(notification, *args)
+  devise_mailer.send(notification, self, *args).deliver_later
+end
+
 validates :name, presence: true, length: {maximum: 50}
 
 enum role: { user: 0, admin: 1}

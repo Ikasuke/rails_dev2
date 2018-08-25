@@ -1,5 +1,5 @@
 <%= form_with(model: to_do_item, local: true) do |form| %>
-  <% if to_do_item.errors.any? %>
+  <% if @to_do_item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(to_do_item.errors.count, "error") %> prohibited this to_do_item from being saved:</h2>
 

@@ -2,41 +2,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:new, :create]
 
-  def test
-    #render plain: "Hello, Rails!"
-   user = User.find(1)
-  to_do_items = user.to_do_items
-    #@categories = user.categories
-    catedoes = Array.new()
-  to_do_items.each do |to_do_item|
-    catedo = [user.name, to_do_item.category.category_name , to_do_item.title]
-     catedoes.push(catedo)
-  end
-     @cate_does = catedoes
-    #render plain:@to_does
-   #render plain:to_do_items[1].title
-
-  #to_do_item = ToDoItem.find(4)
-  #@user = to_do_item.user
-  #@category = to_do_item.category
-   #render plain:@user
-  end
-
-
-def all
-  catedoes = Array.new()
-  users = User.all
-
-  users.each do |user|
-    to_do_items = user.to_do_items
-
-    to_do_items.each do |to_do_item|
-      catedo = [user.name, to_do_item.category.category_name , to_do_item.title]
-      catedoes.push(catedo)
-    end
-  end
-  @cate_does = catedoes
-end  #all end
 
  def home
     user = current_user
@@ -50,10 +15,19 @@ end  #all end
         catedoes.push(catedo)
     end
     @cate_does = catedoes
+
    #Todo作成用の@to_do_itemを準備　user_idはログイン中のユーザー
-    to_do_item = ToDoItem.new
-    to_do_item.user_id = user.id
+to_do_item = ToDoItem.new
+  to_do_item.user_id = user.id
+if params[:to_do_item].nil? then
+ #何もしない
+  else
+    to_do_item = params[:to_do_item]
+  end
      @to_do_item = to_do_item
+
+
+
    #Todo作成用の@categoresを準備
      user_categories = user.categories
      category_selects = Array.new()
@@ -153,6 +127,46 @@ end
       format.json { head :no_content }
     end
   end
+
+
+#///////////test////////
+  def test
+    #render plain: "Hello, Rails!"
+   user = User.find(1)
+  to_do_items = user.to_do_items
+    #@categories = user.categories
+    catedoes = Array.new()
+  to_do_items.each do |to_do_item|
+    catedo = [user.name, to_do_item.category.category_name , to_do_item.title]
+     catedoes.push(catedo)
+  end
+     @cate_does = catedoes
+    #render plain:@to_does
+   #render plain:to_do_items[1].title
+
+  #to_do_item = ToDoItem.find(4)
+  #@user = to_do_item.user
+  #@category = to_do_item.category
+   #render plain:@user
+  end
+
+
+def all
+  catedoes = Array.new()
+  users = User.all
+
+  users.each do |user|
+    to_do_items = user.to_do_items
+
+    to_do_items.each do |to_do_item|
+      catedo = [user.name, to_do_item.category.category_name , to_do_item.title]
+      catedoes.push(catedo)
+    end
+  end
+  @cate_does = catedoes
+end  #all end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -25,6 +25,7 @@ class ToDoItemsController < ApplicationController
   # POST /to_do_items
   # POST /to_do_items.json
   def create
+
     @to_do_item = ToDoItem.new(to_do_item_params)
     #@to_do_item.category_id = "1"
    @to_do_item.user_id = current_user.id
@@ -33,6 +34,8 @@ class ToDoItemsController < ApplicationController
       if @to_do_item.save
         format.html { redirect_to @to_do_item, notice: 'To do item was successfully created.' }
         format.json { render :show, status: :created, location: @to_do_item }
+
+
       else
         format.html { render 'users/home' }
         format.json { render json: @to_do_item.errors, status: :unprocessable_entity }
@@ -63,6 +66,19 @@ class ToDoItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def calendar
+
+   render layout: 'calendar_layout'
+
+ end
+
+ def time_create
+   @to_do_item = ToDoItem.new(to_do_item_params)
+  @to_do_item.user_id = current_user.id
+   #render layout: 'closed_and_reloaded'
+
+ end
 
   private
     # Use callbacks to share common setup or constraints between actions.
