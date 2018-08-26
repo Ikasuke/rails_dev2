@@ -35,13 +35,45 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :timeoutable
 
+validates :name, presence: true  #,uniquness: { case_sensitive: false}
+
+validates_format_of :name, with: /^[a-zA-Z0-9_¥.]*$/, multiline: true
+validate :validate_name
+
+def validate_name
+    errors.add(:name, :invalid) if User.where(email: name).exists?
+end
+
+   attr_accessor :login
+
+  def login=(login)
+     @login = login
+  end
+
+  def login
+     @login || self.name || self.email
+  end
+
+ def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    conditions[:email].downcase! if conditions[:email]
+    login = conditions.delete(:login)
+
+    where(conditions.to_hash).where(
+      ["lower(name) = :value OR lower(email) = :value",
+      { value: login.downcase}]
+    ).first
+ end
+
 def send_devise_notification(notification, *args)
   devise_mailer.send(notification, self, *args).deliver_later
 end
 
-validates :name, presence: true, length: {maximum: 50}
+
 
 enum role: { user: 0, admin: 1}
+
+
 
 has_many :to_do_items
 has_many :categories
