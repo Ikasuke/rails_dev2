@@ -74,10 +74,9 @@ class ToDoItemsController < ApplicationController
  end
 
  def time_create
-   @to_do_item = ToDoItem.new(to_do_item_params)
-  @to_do_item.user_id = current_user.id
+  # @to_do_item = ToDoItem.new(to_do_item_params)
+  #@to_do_item.user_id = current_user.id
    #render layout: 'closed_and_reloaded'
-
  end
 
   private
