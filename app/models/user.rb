@@ -4,7 +4,6 @@
 #
 #  id                     :bigint(8)        not null, primary key
 #  name                   :string(255)
-#  administrator          :boolean
 #  state                  :boolean
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -25,7 +24,11 @@
 #  failed_attempts        :integer          default(0), not null
 #  unlock_token           :string(255)
 #  locked_at              :datetime
-#  role                   :integer          not null
+#  role                   :integer          default("user"), not null
+#  avatar_file_name       :string(255)
+#  avatar_content_type    :string(255)
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
 #
 
 class User < ApplicationRecord
@@ -35,6 +38,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :timeoutable
 
+ has_attached_file :avatar, styles: {medium: '300x300>', thumb: '100x100>' }, default_url: 'http://localhost:3000/rocket.jpg'
+
+ #validates_attachment_content_type :avatar, content_type: %r{¥Aimage¥/.*¥z}
 validates :name, presence: true  #,uniquness: { case_sensitive: false}
 
 validates_format_of :name, with: /^[a-zA-Z0-9_¥.]*$/, multiline: true
