@@ -1,3 +1,6 @@
+
+
+
 <p> ここは、<%=@user.name%>さんのページです。
 </p>
 
@@ -49,14 +52,21 @@
 <%= form_with model: Category.new do |f| %>
  <%= f.label :contents,  "category" %>
  <%= f.text_field :category_name %>
+
+ <%= f.label :date %><br>
+    <%= f.text_field :date, :class => 'datepicker' %>
+
  <%= f.submit %>
 <% end %>
+
 
 
 <i class="material_icons">alarm</i>
 <i class="material-icons md-36">alarm</i>
 <i class="material-icons md-36">star_border</i>
 <p> <%= link_to 'TO do', to_do_items_path %> </p>
+
+
 
 
 

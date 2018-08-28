@@ -13,5 +13,18 @@
 = require rails-ujs
 //= require activestorage
 //= require jquery
+//= require jquery.turbolinks
+//= require jquery_ujs
 //= require bootstrap
+//= require moment                                     # datetimepickerに必要
+//= require moment/ja                                  # datetimepickerに必要
+//= require bootstrap-datetimepicker                   # datetimepickerに必要
+//= require turbolinks
 //= require_tree ./main
+
+
+var data = {'data-date-format': 'YYYY-MM-DD' };
+$(function(){
+  $('.datepicker').attr(data);
+  $('.datepicker').datetimepicker();
+});

@@ -41,6 +41,9 @@ class User < ApplicationRecord
  has_attached_file :avatar, styles: {medium: '300x300>', thumb: '100x100>' }, default_url: 'http://localhost:3000/rocket.jpg'
 
  #validates_attachment_content_type :avatar, content_type: %r{¥Aimage¥/.*¥z}
+
+ validates_attachment_content_type :avatar, content_type:  ["image/jpeg", "image/gif", "image/png"]
+
 validates :name, presence: true  #,uniquness: { case_sensitive: false}
 
 validates_format_of :name, with: /^[a-zA-Z0-9_¥.]*$/, multiline: true
