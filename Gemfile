@@ -33,14 +33,22 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+
+#bootstrap4を使う
 gem 'bootstrap', '> 4.0.0.beta2.1'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+gem 'popper_js', '> 1.12.3'
+gem 'tether-rails'
+
+#calendar表示 bootstrap4用
+#gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+gem 'bootstrap4-datetime-picker-rails'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+
+
 gem 'jquery-turbolinks'
-gem 'popper_js', '> 1.12.3'
-gem 'tether-rails'
+gem 'turbolinks'
 
 gem 'pry'
 

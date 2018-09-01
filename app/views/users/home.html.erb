@@ -25,7 +25,7 @@
   </tr>
 <% end %>
 
-<%= form_with model: ToDoItem.new do |f| %>
+<%= form_with model: ToDoItem.new do |f|%>
  <%= f.label :contents, "To_do追加" %>
  <%= f.text_field :title, placeholder: 'to do入力' %>
 <%= link_to to_do_item_calendar_path do %>
@@ -45,6 +45,15 @@
  <br>
 <%= f.select :category_id, @category_selects,{:prompt => "category"}, {:class => "category_tab"} %>
 
+<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+        <%= f.text_field(:starts_at,
+          class: "form-control datetimepicker-input", data: {target:"#datetimepicker1"}) %>
+        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fas fa-calendar-plus"></i></div>
+        </div>
+      </div>
+
+
 <% end %>
 
 
@@ -53,8 +62,6 @@
  <%= f.label :contents,  "category" %>
  <%= f.text_field :category_name %>
 
- <%= f.label :date %><br>
-    <%= f.text_field :date, :class => 'datepicker' %>
 
  <%= f.submit %>
 <% end %>

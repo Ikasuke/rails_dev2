@@ -15,11 +15,11 @@
  */
 
 @import "bootstrap";
-@import 'bootstrap-datetimepicker';
+@import "tempusdominus-bootstrap-4.css";
 
 input[type="text"], textarea{
   box-sizing: border-box;
-  width: 400px;
+  width: 500px;
   padding: 5px;
 }
 
