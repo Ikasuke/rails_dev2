@@ -20,7 +20,7 @@
 <h3>all To do</h3>
 <%  @cate_does.each do |cate_do| %>
   <tr>
-  <td><%= link_to cate_do[2],edit_to_do_item_path(cate_do[3]) %></td>
+  <td><%= link_to cate_do[2], to_do_item_path(cate_do[3]) %></td>
   <br>
   </tr>
 <% end %>
@@ -33,11 +33,10 @@
 
      <% if params[:to_do_item].nil? %>
      <% else %>
-  <%= f.hidden_field :start_date, value: Time.zone.local(params[:to_do_item]["start_date(1i)"].to_i, params[:to_do_item]["start_date(2i)"].to_i, params[:to_do_item]["start_date(3i)"].to_i) %>
-    <%= f.hidden_field :start_time, value: Time.zone.local(params[:to_do_item]["start_time(1i)"].to_i, params[:to_do_item]["start_time(2i)"].to_i, params[:to_do_item]["start_time(3i)"].to_i, params[:to_do_item]["start_time(4i)"].to_i, params[:to_do_item]["start_time(5i)"].to_i) %>
+     <%= f.hidden_field :start_at, value: Time.zone.local(params[:to_do_item]["start_at(1i)"].to_i, params[:to_do_item]["start_at(2i)"].to_i, params[:to_do_item]["start_at(3i)"].to_i,  params[:to_do_item]["start_at(4i)"].to_i,  params[:to_do_item]["start_at(5i)"].to_i ) %>
 
-    <%= f.hidden_field :end_date, value: Time.zone.local(params[:to_do_item]["end_date(1i)"].to_i, params[:to_do_item]["end_date(2i)"].to_i, params[:to_do_item]["end_date(3i)"].to_i) %>
-      <%= f.hidden_field :end_time, value: Time.zone.local(params[:to_do_item]["end_time(1i)"].to_i, params[:to_do_item]["end_time(2i)"].to_i, params[:to_do_item]["end_time(3i)"].to_i, params[:to_do_item]["end_time(4i)"].to_i, params[:to_do_item]["end_time(5i)"].to_i) %>
+       <%= f.hidden_field :end_at, value: Time.zone.local(params[:to_do_item]["end_at(1i)"].to_i, params[:to_do_item]["end_at(2i)"].to_i, params[:to_do_item]["end_at(3i)"].to_i, params[:to_do_item]["end_at(4i)"].to_i, params[:to_do_item]["end_at(5i)"].to_i ) %>
+
     <% end %>
 
 <% end %>

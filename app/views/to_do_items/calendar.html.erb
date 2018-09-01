@@ -1,23 +1,14 @@
 <%= form_with(url: '/user_home',model: ToDoItem.new, local: true) do |f| %>
 
 <div class="field">
- <%= f.label :start_date  %>
- <%= f.date_select :start_date %>
+ <%= f.label :start_at  %>
+ <%= f.datetime_select :start_at %>
 </div>
 
-<div class="field">
- <%= f.label :start_time %>
- <%= f.time_select :start_time %>
- </div>
 
 <div class="field">
- <%= f.label :end_date %>
- <%= f.date_select :end_date %>
- </div>
-
-<div class="field">
- <%= f.label :end_time %>
- <%= f.time_select :end_time %>
+ <%= f.label :end_at %>
+ <%= f.datetime_select :end_at %>
  </div>
 
  <div class="actions">

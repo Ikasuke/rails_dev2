@@ -6,10 +6,8 @@
 #  user_id     :integer
 #  category_id :integer
 #  title       :string(255)
-#  start_date  :date
-#  start_time  :time
-#  end_date    :date
-#  end_time    :time
+#  start_at    :datetime
+#  end_at      :datetime
 #  place       :string(255)
 #  memo        :text(65535)
 #  attachment  :string(255)
