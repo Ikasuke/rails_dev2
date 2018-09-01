@@ -11,8 +11,17 @@ class UsersController < ApplicationController
     catedoes = Array.new()
 
     to_do_items.each do |to_do_item|
-        catedo = [user.name, to_do_item.category.category_name , to_do_item.title, to_do_item.id]
-        catedoes.push(catedo)
+
+      if to_do_item.start_at.blank? then
+          #何もしない
+      else
+         if to_do_item.start_at.strftime("%x") == Time.now.strftime("%x") then
+            catedo = [user.name, to_do_item.category.category_name , to_do_item.title, to_do_item.id]
+            catedoes.push(catedo)
+         else
+            #何もしない
+         end
+      end
     end
     @cate_does = catedoes
 

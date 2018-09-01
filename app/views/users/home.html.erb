@@ -1,23 +1,35 @@
+<p> <%= @user.name %>のページ </p>
+
+<%= form_with model: ToDoItem.new do |f|%>
+  <%= f.label :contents, "to doを追加する" %><br>
+  <%= f.text_field :title, placeholder: 'to do入力',class:"to_do_input" %>
+  <%= f.select :category_id, @category_selects,{:prompt => "category?"}, {:class => "category_tab"} %>
+  <%= f.submit "登録する" %>
+
+  <div class="form-inline">
+    <span class="input-group date" id="datetimepicker1" data-target-input="nearest">
+         <%= f.text_field(:start_at, placeholder: '開始時間',
+            class: "form-control datetimepicker-input", data: {target:"#datetimepicker1"}) %>
+         <span class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+              <span class="input-group-text"><i class="fas fa-calendar-plus"></i></span>
+         </span>
+    </span>
+
+    <span class="input-group date" id="datetimepicker2" data-target-input="nearest">
+           <%= f.text_field(:end_at, placeholder: '終了時間',
+               class: "form-control datetimepicker-input", data: {target:"#datetimepicker2"}) %>
+           <span class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                 <span class="input-group-text"><i class="fas fa-calendar-plus"></i></span>
+           </span>
+    </span>
+  </div>
+
+ <br><br>
+<% end %>
 
 
-
-<p> ここは、<%=@user.name%>さんのページです。
-</p>
-
-<div class="col-md-3">
- <div class="card p-2">
-   <%= image_tag current_user.avatar.url, class: "card-img-top rounded-circle" %>
-   <div class="card-body">
-     <h4 class="card-title"><%= "@#{@user.name}" %></h4>
-     <p class="card-text">
-       <span class="text-secondary">ユーザー情報がここに入ります。</span>
-     </p>
-   </div>
- </div>
-</div>
-
-
-<h3>all To do</h3>
+<h3>本日のto do</h3>
+<p>本日は<%= Time.now.strftime('%Y年%m月%d日') %>です。</p>
 <%  @cate_does.each do |cate_do| %>
   <tr>
   <td><%= link_to cate_do[2], to_do_item_path(cate_do[3]) %></td>
@@ -25,64 +37,30 @@
   </tr>
 <% end %>
 
-<%= form_with model: ToDoItem.new do |f|%>
- <%= f.label :contents, "To_do追加" %>
- <%= f.text_field :title, placeholder: 'to do入力' %>
-<%= link_to to_do_item_calendar_path do %>
-     <i class="material-icons md-36">calendar_today</i>
 
-     <% if params[:to_do_item].nil? %>
-     <% else %>
-     <%= f.hidden_field :start_at, value: Time.zone.local(params[:to_do_item]["start_at(1i)"].to_i, params[:to_do_item]["start_at(2i)"].to_i, params[:to_do_item]["start_at(3i)"].to_i,  params[:to_do_item]["start_at(4i)"].to_i,  params[:to_do_item]["start_at(5i)"].to_i ) %>
+<% content_for :sidebar_left do %>
 
-       <%= f.hidden_field :end_at, value: Time.zone.local(params[:to_do_item]["end_at(1i)"].to_i, params[:to_do_item]["end_at(2i)"].to_i, params[:to_do_item]["end_at(3i)"].to_i, params[:to_do_item]["end_at(4i)"].to_i, params[:to_do_item]["end_at(5i)"].to_i ) %>
+<tr><td> <i class="material-icons md-24">event</i> today</td></tr>
+<br>
+<tr><td> <i class="material-icons md-24">event</i> week</td></tr>
+<br>
+<tr><td> <i class="material-icons md-24">assignment</i> <%= link_to 'all', to_do_items_path %> </td></tr>
+<br>
+<%  @category_selects.each do |category_select| %>
 
-    <% end %>
-
-<% end %>
-  <%= f.submit %>
- <br>
-<%= f.select :category_id, @category_selects,{:prompt => "category"}, {:class => "category_tab"} %>
-
-<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-        <%= f.text_field(:starts_at,
-          class: "form-control datetimepicker-input", data: {target:"#datetimepicker1"}) %>
-        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-          <div class="input-group-text"><i class="fas fa-calendar-plus"></i></div>
-        </div>
-      </div>
-
-
+<tr><td> <i class="material-icons md-24">assignment</i> <%= category_select[0] %></td></tr>
+<br>
 <% end %>
 
-
-<h5>Categoryを追加する</h5>
 <%= form_with model: Category.new do |f| %>
- <%= f.label :contents,  "category" %>
- <%= f.text_field :category_name %>
+<tr><td> +<i class="material-icons md-24">assignment</i><%= f.text_field :category_name, placeholder: '追加カテゴリー', class: "category_text"%></td></tr>
 
-
- <%= f.submit %>
+ <% f.submit %>
 <% end %>
 
 
 
-<i class="material_icons">alarm</i>
-<i class="material-icons md-36">alarm</i>
-<i class="material-icons md-36">star_border</i>
-<p> <%= link_to 'TO do', to_do_items_path %> </p>
-
-
-
-
-
-<ol>
-<%
-=begin
-%>
-<li><%= link_to 'ユーザー情報',  user_path(@user.id) %></li>
-<%
-=end
-%>
-<li><%= link_to 'カテゴリー情報', user_category_path %></li>
+<li><%= link_to 'カテゴリー編集',categories_path %></li>
 </ol>
+
+<% end %>
