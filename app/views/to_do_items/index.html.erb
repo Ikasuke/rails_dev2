@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>To Do Items</h1>
+<h1>all</h1>
 
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Category</th>
       <th>Title</th>
+      <th>Category</th>
+
       <th>Start datetime</th>
       <th>End datetime</th>
       <th>Place</th>
@@ -23,9 +23,9 @@
   <tbody>
     <% @to_do_items.each do |to_do_item| %>
       <tr>
-        <td><%= to_do_item.user_id %></td>
-        <td><%= to_do_item.category_id %></td>
         <td><%= to_do_item.title %></td>
+        <td><%= to_do_item.category.category_name %></td>
+
         <td><%= to_do_item.start_at%></td>
         <td><%= to_do_item.end_at %></td>
         <td><%= to_do_item.place %></td>

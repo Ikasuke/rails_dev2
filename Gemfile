@@ -58,8 +58,11 @@ gem 'devise'
 
 gem 'activeadmin'
 
+#icon
 gem 'material_icons'
+gem 'font-awesome-rails'
 
+#login周り
 gem 'sidekiq'
 gem 'sinatra'
 gem 'redis-rails'

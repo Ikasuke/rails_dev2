@@ -4,7 +4,9 @@ class ToDoItemsController < ApplicationController
   # GET /to_do_items
   # GET /to_do_items.json
   def index
-    @to_do_items = ToDoItem.all
+    user = current_user
+    @to_do_items = user.to_do_items
+     #@to_do_items = ToDoItem.all
   end
 
   # GET /to_do_items/1
