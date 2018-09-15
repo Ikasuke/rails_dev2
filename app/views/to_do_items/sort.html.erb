@@ -20,8 +20,25 @@
 
 <%  @cate_does.each do |cate_do| %>
   <tr>
-  <td><%= cate_do[1] %></td>
-  <td><%= cate_do[2] %></td>
+  <td><%= cate_do.title %></td>
+  <td><%= cate_do.category.category_name %></td>
+  <% if cate_do.start_at.blank? %>
+   <td></td>
+   <% else %>
+  <td><%= cate_do.start_at.strftime('%Y年%m月%d日%H時%M分')%></td>
+  <% end %>
+  <% if cate_do.end_at.blank? %>
+   <td></td>
+   <% else %>
+  <td><%= cate_do.end_at.strftime('%Y年%m月%d日%H時%M分')%></td>
+  <% end %>
+  <td><%= cate_do.place %></td>
+  <td><%= cate_do.rank %></td>
+
+  <td><%= link_to 'Show', to_do_item_path(cate_do.id) %></td>
+  <td><%= link_to 'Edit', edit_to_do_item_path(cate_do.id) %></td>
+  <td><%= link_to 'Destroy', to_do_item_path(cate_do.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
   <br>
   </tr>
 <% end %>

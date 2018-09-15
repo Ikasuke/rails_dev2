@@ -12,13 +12,15 @@ class ToDoItemsController < ApplicationController
 
     to_do_items.each do |to_do_item|
       if to_do_item.category.category_name == params[:title] then
-        catedo = [user.name, to_do_item.category.category_name , to_do_item.title, to_do_item.id]
+      #  catedo = [user.name, to_do_item.category.category_name , to_do_item.title, to_do_item.id]
+      catedo = to_do_item
         catedoes.push(catedo)
       else
          #何もしない
       end   #(ifのend)
     end    #(to_do_item.each のend)
     @cate_does = catedoes   #選択したtitleのtodoが入っている
+
  end  #(def sortのend)
 
 
@@ -62,6 +64,9 @@ class ToDoItemsController < ApplicationController
       end
       @category_selects = category_selects
 
+     rank_selects =Array.new()
+       rank_selects = ["☆☆☆","★☆☆","★★☆","★★★"]
+       @rank_selects = rank_selects
   end
 
   # POST /to_do_items

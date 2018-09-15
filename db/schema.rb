@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_15_031919) do
+ActiveRecord::Schema.define(version: 2018_09_15_064554) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2018_09_15_031919) do
     t.string "place"
     t.text "memo"
     t.string "attachment"
-    t.integer "rank"
+    t.integer "rank", default: 0, null: false
     t.boolean "remind", default: false, null: false
     t.timestamp "remind_time"
     t.datetime "created_at", null: false

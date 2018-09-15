@@ -11,7 +11,7 @@
 #  place       :string(255)
 #  memo        :text(65535)
 #  attachment  :string(255)
-#  rank        :integer
+#  rank        :integer          default("☆☆☆"), not null
 #  remind      :boolean          default("しない"), not null
 #  remind_time :datetime
 #  created_at  :datetime         not null
@@ -28,5 +28,7 @@ class ToDoItem < ApplicationRecord
 enum remind: { する: true, しない: false}
 
 enum complete: { おわった: true, まだ: false}
+
+enum rank: {☆☆☆:0, ★☆☆:1, ★★☆:2, ★★★:3}
 
 end

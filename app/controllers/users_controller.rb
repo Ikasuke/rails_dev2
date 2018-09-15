@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       else
          if to_do_item.start_at.strftime("%x") == Time.now.strftime("%x") then    #登録された日程が本日であればcatedoに格納動作に進む
             if to_do_item.complete == "まだ" then                                 #完了してないなら格納する
-                catedo = [user.name, to_do_item.category.category_name , to_do_item.title, to_do_item.id]
+                catedo = [user.name, to_do_item.category.category_name , to_do_item.title, to_do_item.id, to_do_item.rank]
                 catedoes.push(catedo)
             else
                #完了しているので何もしない

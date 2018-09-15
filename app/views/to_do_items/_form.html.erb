@@ -52,7 +52,7 @@
 
   <div class="field">
     <%= f.label :rank %>
-    <%= f.number_field :rank %>
+    <%= f.select :rank, rank_selects,{:prompt => "☆☆☆"}, {:class => "btn category_tab"} %>
   </div>
 
   <div class="field">
@@ -60,10 +60,16 @@
     <%= f.check_box :remind , {}, "する", "しない"%>
   </div>
 
-  <div class="field">
-    <%= f.label :remind_time %>
-    <%= f.datetime_select :remind_time %>
-  </div>
+  
+  <div class="form-inline">
+    <span class="input-group date" id="datetimepicker3" data-target-input="nearest">
+         <%= f.text_field(:remind_time, placeholder: 'リマインド時間',
+            class: "form-control datetimepicker-input", data: {target:"#datetimepicker3"}) %>
+         <span class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+              <span class="input-group-text"><i class="fas fa-calendar-plus"></i></span>
+         </span>
+    </span>
+</div>
 
 <div class="field">
     <%= f.label :complete %>

@@ -47,6 +47,7 @@
         <td id ='<%= cate_do[3] %>' >
           <%= f.check_box(:cate_do, {:multiple => true}, cate_do[3], nil) %>
           <%= link_to cate_do[2] , to_do_item_path(cate_do[3])%>
+          <%=  cate_do[4] %>
         </td>
          <br>
      </tr>
