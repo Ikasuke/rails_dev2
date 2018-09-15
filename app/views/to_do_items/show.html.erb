@@ -1,23 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @to_do_item.user_id %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @to_do_item.category_id %>
-</p>
-
-<p>
   <strong>Title:</strong>
   <%= @to_do_item.title %>
 </p>
 
 <p>
+  <strong>Category:</strong>
+  <%= @to_do_item.category.category_name %>
+</p>
+
+
+<p>
   <strong>Start datetime:</strong>
-  <%= @to_do_item.start_at %>
+  <%= @to_do_item.start_at  %>
 </p>
 
 <p>
@@ -53,6 +49,11 @@
 <p>
   <strong>Remind time:</strong>
   <%= @to_do_item.remind_time %>
+</p>
+
+<p>
+  <strong>complete:</strong>
+  <%= @to_do_item.complete %>
 </p>
 
 <%= link_to 'Edit', edit_to_do_item_path(@to_do_item) %> |

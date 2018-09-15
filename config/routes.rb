@@ -22,14 +22,25 @@ Rails.application.routes.draw do
   get 'user_home', to: 'users#home'
   post 'user_home', to: 'users#home'
   get 'users', to: 'users#index'
-  get '/test', to: 'users#test'
-  get '/all' , to: 'users#all'
+
 
  get '/user/category', to: 'users#category'
   #get 'user/admin', to: 'users#admin'
 
+###calendar
 get 'to_do_item/calendar', to: 'to_do_items#calendar'
 post 'to_do_item/calendar', to: 'to_do_items#time_create'
+
+
+get 'to_do_item/sort', to: 'to_do_items#sort'
+
+
+###test用で使用
+get '/test', to: 'users#test'
+post '/test', to: 'users#test'
+get '/all' , to: 'users#all'
+
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 # resources :users

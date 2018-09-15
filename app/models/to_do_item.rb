@@ -12,14 +12,21 @@
 #  memo        :text(65535)
 #  attachment  :string(255)
 #  rank        :integer
-#  remind      :boolean          default(FALSE), not null
+#  remind      :boolean          default("しない"), not null
 #  remind_time :datetime
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  complete    :boolean          default("まだ"), not null
 #
 
 class ToDoItem < ApplicationRecord
   validates :title, presence: true
   belongs_to :user
   belongs_to :category
+
+
+enum remind: { する: true, しない: false}
+
+enum complete: { おわった: true, まだ: false}
+
 end

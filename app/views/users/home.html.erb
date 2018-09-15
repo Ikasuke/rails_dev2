@@ -2,9 +2,9 @@
 
 <%= form_with model: ToDoItem.new do |f|%>
   <%= f.label :contents, "to doを追加する" %><br>
-  <%= f.text_field :title, placeholder: 'to do入力',class:"to_do_input" %>
-  <%= f.select :category_id, @category_selects,{:prompt => "category?"}, {:class => "category_tab"} %>
-  <%= f.submit "登録する" %>
+
+  <%= f.text_field :title, placeholder: 'to do入力',class:"form-control to_do_input " %>
+  <%= f.select :category_id, @category_selects,{:prompt => "category?"}, {:class => "btn category_tab"} %>
 
   <div class="form-inline">
     <span class="input-group date" id="datetimepicker1" data-target-input="nearest">
@@ -24,17 +24,37 @@
     </span>
   </div>
 
+  <div class="btn btn-primary ">
+    <%= link_to '詳細を記入する',new_to_do_item_path, params: {title: 'hoge'}, method: :post %>
+  </div>
+
+<%= f.submit "登録する", :class=>"btn btn-info" %>
+
+
  <br><br>
 <% end %>
 
 
 <h3>本日のto do</h3>
 <p>本日は<%= Time.now.strftime('%Y年%m月%d日') %>です。</p>
-<%  @cate_does.each do |cate_do| %>
-  <tr>
-  <td><%= link_to cate_do[2], to_do_item_path(cate_do[3]) %></td>
-  <br>
-  </tr>
+
+<%= form_with(url: 'user_home') do |f| %>
+
+ <table class="table">
+
+   <%  @cate_does.each_with_index do |cate_do, i| %>
+     <tr>
+        <td id ='<%= cate_do[3] %>' >
+          <%= f.check_box(:cate_do, {:multiple => true}, cate_do[3], nil) %>
+          <%= link_to cate_do[2] , to_do_item_path(cate_do[3])%>
+        </td>
+         <br>
+     </tr>
+   <% end %>
+
+ </table>
+
+<%= f.submit('todo完了') %>
 <% end %>
 
 
@@ -48,7 +68,7 @@
 <br>
 <%  @category_selects.each do |category_select| %>
 
-<tr><td> <i class="material-icons md-24">assignment</i> <%= category_select[0] %></td></tr>
+<tr><td> <i class="material-icons md-24">assignment</i> <%= link_to category_select[0], to_do_item_sort_path(title:category_select[0]) %></td></tr>
 <br>
 <% end %>
 

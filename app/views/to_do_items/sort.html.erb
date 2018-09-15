@@ -1,0 +1,31 @@
+
+<p> sort </p>
+
+
+<table class="table table-bordered table-hover">
+<thead>
+  <tr>
+    <th>Title</th>
+    <th>Category</th>
+
+    <th>Start datetime</th>
+    <th>End datetime</th>
+    <th>Place</th>
+
+    <th>Rank</th>
+
+    <th colspan="3"></th>
+  </tr>
+</thead>
+
+<%  @cate_does.each do |cate_do| %>
+  <tr>
+  <td><%= cate_do[1] %></td>
+  <td><%= cate_do[2] %></td>
+  <br>
+  </tr>
+<% end %>
+
+</table>
+
+<%= link_to "戻る", user_home_path %>

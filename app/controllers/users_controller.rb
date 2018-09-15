@@ -11,24 +11,28 @@ class UsersController < ApplicationController
     catedoes = Array.new()
 
     to_do_items.each do |to_do_item|
-
-      if to_do_item.start_at.blank? then
+   ## 本日のtodoがあれば表示させる
+      if to_do_item.start_at.blank? then     # 日程が登録されてなければ何もしない。日程があればelseへ
           #何もしない
       else
-         if to_do_item.start_at.strftime("%x") == Time.now.strftime("%x") then
-            catedo = [user.name, to_do_item.category.category_name , to_do_item.title, to_do_item.id]
-            catedoes.push(catedo)
+         if to_do_item.start_at.strftime("%x") == Time.now.strftime("%x") then    #登録された日程が本日であればcatedoに格納動作に進む
+            if to_do_item.complete == "まだ" then                                 #完了してないなら格納する
+                catedo = [user.name, to_do_item.category.category_name , to_do_item.title, to_do_item.id]
+                catedoes.push(catedo)
+            else
+               #完了しているので何もしない
+            end
          else
-            #何もしない
+            #登録されば日程が本日でないので何もしない
          end
       end
     end
-    @cate_does = catedoes
+    @cate_does = catedoes   #本日のtodoが入っている
 
-   #Todo作成用の@to_do_itemを準備　user_idはログイン中のユーザー
-to_do_item = ToDoItem.new
-  to_do_item.user_id = user.id
-if params[:to_do_item].nil? then
+   ## Todo作成用の@to_do_itemを準備　user_idはログイン中のユーザー
+to_do_item = ToDoItem.new   #空
+  to_do_item.user_id = user.id    #空にログインユーザーのidを入れる
+if params[:to_do_item].nil? then   # * 現在使用していないので全て「nil?=>yes」の処理。別windowでto_do_itemを登録した時の名残
  #何もしない
   else
     to_do_item = params[:to_do_item]
@@ -36,15 +40,32 @@ if params[:to_do_item].nil? then
      @to_do_item = to_do_item
 
 
-
-   #Todo作成用の@categoresを準備
-     user_categories = user.categories
-     category_selects = Array.new()
+   ## Todo作成用の@categoresを準備
+     user_categories = user.categories    #リレーショナルな関係なのでuser.categoliesでログインユーザーのカテゴリーを全て格納
+     category_selects = Array.new()      # 空
      user_categories.each do |user_category|
          category_select = [user_category.category_name,user_category.id]
          category_selects.push(category_select)
      end
      @category_selects = category_selects
+
+   ids = params[:cate_do]
+
+   if ids.blank? then     # checkboxがちぇっくされてなければ何もしない。あればelseへ
+       #何もしない
+   else
+       @ids = ids
+       ids.each do |val|
+          edit_to_do = ToDoItem.find(val)
+            edit_to_do.complete = "おわった"
+            edit_to_do.save
+        end
+       respond_to do |format|
+         format.html
+         format.js
+       end
+
+   end
 
  end   #def home end
 
@@ -140,25 +161,12 @@ end
 
 #///////////test////////
   def test
-    #render plain: "Hello, Rails!"
-   user = User.find(1)
-  to_do_items = user.to_do_items
-    #@categories = user.categories
-    catedoes = Array.new()
-  to_do_items.each do |to_do_item|
-    catedo = [user.name, to_do_item.category.category_name , to_do_item.title]
-     catedoes.push(catedo)
+    @title = params[:title]
+     respond_to do |format|
+       format.html
+       format.js
+    end
   end
-     @cate_does = catedoes
-    #render plain:@to_does
-   #render plain:to_do_items[1].title
-
-  #to_do_item = ToDoItem.find(4)
-  #@user = to_do_item.user
-  #@category = to_do_item.category
-   #render plain:@user
-  end
-
 
 def all
   catedoes = Array.new()
