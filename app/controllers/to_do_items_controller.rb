@@ -39,8 +39,14 @@ class ToDoItemsController < ApplicationController
   # GET /to_do_items/new
   def new
 
-    @to_do_item = ToDoItem.new
+    if params[:to_do_item].nil? then
+      @to_do_item = ToDoItem.new    #新しい
+      else
+      @to_do_item = ToDoItem.new(to_do_item_params)  #
+      end
+
      user = current_user
+
     #Todo作成用の@categoresを準備
       user_categories = user.categories
       category_selects = Array.new()
@@ -49,6 +55,10 @@ class ToDoItemsController < ApplicationController
           category_selects.push(category_select)
       end
       @category_selects = category_selects
+
+      rank_selects =Array.new()
+        rank_selects = ["☆☆☆","★☆☆","★★☆","★★★"]
+        @rank_selects = rank_selects
 
   end
 
@@ -71,24 +81,25 @@ class ToDoItemsController < ApplicationController
 
   # POST /to_do_items
   # POST /to_do_items.json
-  def create
+def create
+  @to_do_item = ToDoItem.new(to_do_item_params)
+  @to_do_item.user_id = current_user.id
 
-    @to_do_item = ToDoItem.new(to_do_item_params)
-    #@to_do_item.category_id = "1"
-   @to_do_item.user_id = current_user.id
-
-    respond_to do |format|
-      if @to_do_item.save
-        format.html { redirect_to @to_do_item, notice: 'To do item was successfully created.' }
-        format.json { render :show, status: :created, location: @to_do_item }
-
-
-      else
-        format.html { render 'users/home' }
-        format.json { render json: @to_do_item.errors, status: :unprocessable_entity }
-      end
+ if params[:commit] == "詳細を記入する" then
+       redirect_to  new_to_do_item_path(to_do_item: to_do_item_params)
+  else
+     respond_to do |format|
+       if @to_do_item.save
+         format.html { redirect_to @to_do_item, notice: 'To do item was successfully created.' }
+         format.json { render :show, status: :created, location: @to_do_item }
+       else
+         format.html { render 'user_home' }
+         format.json { render json: @to_do_item.errors, status: :unprocessable_entity }
+       end
     end
-  end
+  end  #if commit
+
+end
 
   # PATCH/PUT /to_do_items/1
   # PATCH/PUT /to_do_items/1.json
@@ -117,6 +128,17 @@ class ToDoItemsController < ApplicationController
   def calendar
    render layout: 'calendar_layout'
  end
+
+def events
+  @events = ToDoItem.all
+   respond_to do |format|
+     format.json{
+       render json:
+       @evetns.to_json( only: [:title, :start_at, :end_at]
+       )
+      }
+  end
+end
 
 
   private

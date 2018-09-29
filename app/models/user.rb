@@ -74,6 +74,7 @@ end
     ).first
  end
 
+#非同期メール
 def send_devise_notification(notification, *args)
   devise_mailer.send(notification, self, *args).deliver_later
 end
@@ -84,6 +85,6 @@ enum role: { user: 0, admin: 1}
 
 
 
-has_many :to_do_items
-has_many :categories
+has_many :to_do_items, dependent: :destroy
+has_many :categories, dependent: :destroy
 end

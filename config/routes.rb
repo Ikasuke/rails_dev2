@@ -31,16 +31,18 @@ Rails.application.routes.draw do
 get 'to_do_item/calendar', to: 'to_do_items#calendar'
 post 'to_do_item/calendar', to: 'to_do_items#time_create'
 
-
 get 'to_do_item/sort', to: 'to_do_items#sort'
-
 
 ###test用で使用
 get '/test', to: 'users#test'
 post '/test', to: 'users#test'
 get '/all' , to: 'users#all'
 
+###ajaxやろうとしている
+post 'categories/simple_create', to: 'categories#simple_create'
+post 'categories/simple_destroy', to: 'categories#simple_destroy'
 
+get 'to_do_item/events', to: 'to_do_items#events'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 # resources :users

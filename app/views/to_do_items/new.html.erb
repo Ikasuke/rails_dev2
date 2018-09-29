@@ -1,5 +1,4 @@
 <h1>New To Do Item</h1>
 
-<%= render 'form', to_do_item: @to_do_item, category_selects: @category_selects %>
-
-<%= link_to 'Back', to_do_items_path %>
+<%= render 'form', to_do_item: @to_do_item, category_selects: @category_selects, rank_selects: @rank_selects %>
+<%= link_to 'Back', user_home_path %>

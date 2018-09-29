@@ -60,6 +60,7 @@ if params[:to_do_item].nil? then   # * 現在使用していないので全て�
             edit_to_do.complete = "おわった"
             edit_to_do.save
         end
+##### Ajaxの処理
        respond_to do |format|
          format.html
          format.js

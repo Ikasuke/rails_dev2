@@ -14,5 +14,5 @@
 class Category < ApplicationRecord
   validates :category_name, presence: true
    belongs_to :user
-   has_many :tp_do_items
+   has_many :to_do_items, dependent: :destroy
 end

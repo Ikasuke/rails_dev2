@@ -39,13 +39,15 @@ gem 'bootstrap', '> 4.0.0.beta2.1'
 gem 'popper_js', '> 1.12.3'
 gem 'tether-rails'
 
-#calendar表示 bootstrap4用
+#選択用calendar表示 bootstrap4用
 #gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'bootstrap4-datetime-picker-rails'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
+#表示用calendar
+gem 'fullcalendar-rails'
 
 gem 'jquery-turbolinks'
 gem 'turbolinks'

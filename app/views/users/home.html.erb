@@ -1,5 +1,4 @@
 <p> <%= @user.name %>のページ </p>
-
 <%= form_with model: ToDoItem.new do |f|%>
   <%= f.label :contents, "to doを追加する" %><br>
 
@@ -24,28 +23,24 @@
     </span>
   </div>
 
-  <div class="btn btn-primary ">
-    <%= link_to '詳細を記入する',new_to_do_item_path, params: {title: 'hoge'}, method: :post %>
-  </div>
+<%= f.submit "詳細を記入する", :class=>"btn btn-primary"%>
 
 <%= f.submit "登録する", :class=>"btn btn-info" %>
 
 
- <br><br>
+ <br>
 <% end %>
 
 
 <h3>本日のto do</h3>
 <p>本日は<%= Time.now.strftime('%Y年%m月%d日') %>です。</p>
-
 <%= form_with(url: 'user_home') do |f| %>
-
  <table class="table">
 
    <%  @cate_does.each_with_index do |cate_do, i| %>
      <tr>
-        <td id ='<%= cate_do[3] %>' >
-          <%= f.check_box(:cate_do, {:multiple => true}, cate_do[3], nil) %>
+        <td id ='<%= cate_do[3] %>' >            <!-- idをto_Do_idにする  -->
+          <%= f.check_box(:cate_do, {:multiple => true}, cate_do[3], nil) %>   <!--  チェックボックスonでcate_do[3](to_doのid)を返す -->
           <%= link_to cate_do[2] , to_do_item_path(cate_do[3])%>
           <%=  cate_do[4] %>
         </td>
@@ -55,33 +50,53 @@
 
  </table>
 
-<%= f.submit('todo完了') %>
+<%= f.submit('todo完了',:class=>"btn btn-primary") %>
 <% end %>
 
 
 <% content_for :sidebar_left do %>
 
-<tr><td> <i class="material-icons md-24">event</i> today</td></tr>
-<br>
-<tr><td> <i class="material-icons md-24">event</i> week</td></tr>
-<br>
-<tr><td> <i class="material-icons md-24">assignment</i> <%= link_to 'all', to_do_items_path %> </td></tr>
-<br>
-<%  @category_selects.each do |category_select| %>
+<div id="calendar"></div>
 
-<tr><td> <i class="material-icons md-24">assignment</i> <%= link_to category_select[0], to_do_item_sort_path(title:category_select[0]) %></td></tr>
-<br>
-<% end %>
 
-<%= form_with model: Category.new do |f| %>
-<tr><td> +<i class="material-icons md-24">assignment</i><%= f.text_field :category_name, placeholder: '追加カテゴリー', class: "category_text"%></td></tr>
+ <%= form_with( url: categories_simple_destroy_path) do |f| %>
+
+          <i class="material-icons md-24">event</i> today
+        <br>
+          <i class="material-icons md-24">event</i> week
+        <br>
+          <i class="material-icons md-24">assignment</i> <%= link_to 'all', to_do_items_path %>
+        <br>
+
+
+   <%  @category_selects.each_with_index do |category_select, i| %>
+
+      <span  id ='<%= category_select[1] %>' >
+         <%= f.check_box(:category_select, {:multiple => true}, category_select[1], nil) %>
+          <i class="material-icons md-24">assignment</i> <%= link_to category_select[0], to_do_item_sort_path(title:category_select[0]) %>
+      </span>
+      <br>
+   <% end %>
+
+
+   <%= f.submit('カテゴリ削除',id: 'cate_d') %>
+<% end %>  <!-- simple_destroy end -->
+
+<%= form_with( model: Category.new, url: categories_simple_create_path) do |f| %>
+<tr>
+  <td>
+     +<i class="material-icons md-24">assignment</i><%= f.text_field :category_name, placeholder: '追加カテゴリー', class: "category_text"%>
+  </td>
+</tr>
 
  <% f.submit %>
-<% end %>
+
+
+<% end %>     <!-- simple_create  end   -->
 
 
 
 <li><%= link_to 'カテゴリー編集',categories_path %></li>
 </ol>
 
-<% end %>
+<% end %>    <!--  sidebar end   -->

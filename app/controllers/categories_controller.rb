@@ -18,6 +18,7 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @category = Category.new
+
   end
 
   # GET /categories/1/edit
@@ -66,6 +67,40 @@ class CategoriesController < ApplicationController
     end
   end
 
+
+##
+ def simple_create
+   @category = Category.new(category_params)
+    @category.user_id = current_user.id
+
+     if @category.save
+      render json: '{"status": "OK"}'
+     else
+        render json: '{"status": "NG"}'
+     end
+ end
+
+def simple_destroy
+
+   ids = params[:category_select]
+
+  if ids.blank? then     # checkboxがちぇっくされてなければ何もしない。あればelseへ
+      #何もしない
+  else
+      @ids = ids
+      ids.each do |val|
+         category = Category.find(val)
+         category.destroy
+
+      end
+  end
+
+render json: '{"status": "OK"}'
+
+end
+
+def cate_d
+end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
