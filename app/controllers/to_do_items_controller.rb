@@ -131,13 +131,12 @@ end
 
 def events
   @events = ToDoItem.all
-   respond_to do |format|
-     format.json{
-       render json:
-       @evetns.to_json( only: [:title, :start_at, :end_at]
-       )
-      }
-  end
+   #respond_to do |format|
+    # format.json{
+    #   render json: @events.to_json( only:[:title, :start_at, :end_at])
+    #  }
+#  end
+
 end
 
 
